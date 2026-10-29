@@ -24,14 +24,22 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.util.concurrent.Executors
 
-actual class PlatformDispatchers actual constructor() {
-    actual val io: CoroutineDispatcher = Dispatchers.IO
-    actual val main: CoroutineDispatcher = Dispatchers.Main
-    actual val default: CoroutineDispatcher = Dispatchers.Default
+/**
+ * Platform-specific dispatcher providers.
+ * Android implementation using Kotlinx Coroutines Dispatchers.
+ */
+class PlatformDispatchers {
+    val io: CoroutineDispatcher = Dispatchers.IO
+    val main: CoroutineDispatcher = Dispatchers.Main
+    val default: CoroutineDispatcher = Dispatchers.Default
 }
 
-actual class PlatformFileSystem internal constructor(private val context: Context) {
-    actual fun getMusicDirectories(): List<String> {
+/**
+ * Platform-specific file system access.
+ * Android implementation using Context and File APIs.
+ */
+class PlatformFileSystem internal constructor(private val context: Context) {
+    fun getMusicDirectories(): List<String> {
         val dirs = mutableListOf<String>()
         // Add external storage music directories
         val externalDirs = context.getExternalFilesDirs(Environment.DIRECTORY_MUSIC)
@@ -44,28 +52,32 @@ actual class PlatformFileSystem internal constructor(private val context: Contex
         return dirs
     }
 
-    actual fun readFile(path: String): ByteArray {
+    fun readFile(path: String): ByteArray {
         return File(path).readBytes()
     }
 
-    actual fun writeFile(path: String, data: ByteArray) {
+    fun writeFile(path: String, data: ByteArray) {
         File(path).writeBytes(data)
     }
 
-    actual fun deleteFile(path: String): Boolean {
+    fun deleteFile(path: String): Boolean {
         return File(path).delete()
     }
 
-    actual fun fileExists(path: String): Boolean {
+    fun fileExists(path: String): Boolean {
         return File(path).exists()
     }
 
-    actual fun listFiles(path: String): List<String> {
+    fun listFiles(path: String): List<String> {
         return File(path).listFiles()?.map { it.absolutePath } ?: emptyList()
     }
 }
 
-actual class PlatformMediaPlayer internal constructor(private val context: Context) {
+/**
+ * Platform-specific media playback.
+ * Android implementation using MediaPlayer.
+ */
+class PlatformMediaPlayer internal constructor(private val context: Context) {
     private val mediaPlayer = MediaPlayer()
     private var currentSource: MediaSource? = null
     private val completionListeners = mutableListOf<() -> Unit>()
@@ -82,7 +94,7 @@ actual class PlatformMediaPlayer internal constructor(private val context: Conte
         }
     }
 
-    actual fun play(mediaSource: MediaSource) {
+    fun play(mediaSource: MediaSource) {
         currentSource = mediaSource
         try {
             mediaPlayer.reset()
@@ -94,31 +106,31 @@ actual class PlatformMediaPlayer internal constructor(private val context: Conte
         }
     }
 
-    actual fun pause() {
+    fun pause() {
         if (mediaPlayer.isPlaying) {
             mediaPlayer.pause()
         }
     }
 
-    actual fun stop() {
+    fun stop() {
         mediaPlayer.stop()
         currentSource = null
     }
 
-    actual fun seekTo(position: Long) {
+    fun seekTo(position: Long) {
         mediaPlayer.seekTo(position.toInt())
     }
 
-    actual val currentPosition: Long
+    val currentPosition: Long
         get() = mediaPlayer.currentPosition.toLong()
 
-    actual val duration: Long
+    val duration: Long
         get() = mediaPlayer.duration.toLong()
 
-    actual val isPlaying: Boolean
+    val isPlaying: Boolean
         get() = mediaPlayer.isPlaying
 
-    actual val playbackState: PlaybackState
+    val playbackState: PlaybackState
         get() = when {
             !mediaPlayer.isPlaying && currentSource == null -> PlaybackState.IDLE
             mediaPlayer.isPlaying -> PlaybackState.PLAYING
@@ -139,51 +151,59 @@ actual class PlatformMediaPlayer internal constructor(private val context: Conte
     }
 }
 
-actual class PlatformPreferences internal constructor(private val context: Context) {
+/**
+ * Platform-specific preferences/storage.
+ * Android implementation using SharedPreferences.
+ */
+class PlatformPreferences internal constructor(private val context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences("pixelmusic_prefs", Context.MODE_PRIVATE)
 
-    actual fun getString(key: String, defaultValue: String = ""): String {
+    fun getString(key: String, defaultValue: String = ""): String {
         return prefs.getString(key, defaultValue) ?: defaultValue
     }
 
-    actual fun putString(key: String, value: String) {
+    fun putString(key: String, value: String) {
         prefs.edit().putString(key, value).apply()
     }
 
-    actual fun getBoolean(key: String, defaultValue: Boolean = false): Boolean {
+    fun getBoolean(key: String, defaultValue: Boolean = false): Boolean {
         return prefs.getBoolean(key, defaultValue)
     }
 
-    actual fun putBoolean(key: String, value: Boolean) {
+    fun putBoolean(key: String, value: Boolean) {
         prefs.edit().putBoolean(key, value).apply()
     }
 
-    actual fun getInt(key: String, defaultValue: Int = 0): Int {
+    fun getInt(key: String, defaultValue: Int = 0): Int {
         return prefs.getInt(key, defaultValue)
     }
 
-    actual fun putInt(key: String, value: Int) {
+    fun putInt(key: String, value: Int) {
         prefs.edit().putInt(key, value).apply()
     }
 
-    actual fun getLong(key: String, defaultValue: Long = 0L): Long {
+    fun getLong(key: String, defaultValue: Long = 0L): Long {
         return prefs.getLong(key, defaultValue)
     }
 
-    actual fun putLong(key: String, value: Long) {
+    fun putLong(key: String, value: Long) {
         prefs.edit().putLong(key, value).apply()
     }
 
-    actual fun remove(key: String) {
+    fun remove(key: String) {
         prefs.edit().remove(key).apply()
     }
 
-    actual fun clear() {
+    fun clear() {
         prefs.edit().clear().apply()
     }
 }
 
-actual class PlatformHttpClient internal constructor() {
+/**
+ * Platform-specific network client.
+ * Android implementation using OkHttp.
+ */
+class PlatformHttpClient internal constructor() {
     private val client = OkHttpClient.Builder()
         .addInterceptor { chain ->
             val request = chain.request().newBuilder()
@@ -193,7 +213,7 @@ actual class PlatformHttpClient internal constructor() {
         }
         .build()
 
-    actual suspend fun get(url: String): HttpResponse = withContext(Dispatchers.IO) {
+    suspend fun get(url: String): HttpResponse = withContext(Dispatchers.IO) {
         val request = Request.Builder().url(url).get().build()
         client.newCall(request).execute().use { response ->
             HttpResponse(
@@ -204,7 +224,7 @@ actual class PlatformHttpClient internal constructor() {
         }
     }
 
-    actual suspend fun post(url: String, body: String): HttpResponse = withContext(Dispatchers.IO) {
+    suspend fun post(url: String, body: String): HttpResponse = withContext(Dispatchers.IO) {
         val requestBody = okhttp3.RequestBody.create(body, okhttp3.MediaType.get("application/json; charset=utf-8"))
         val request = Request.Builder().url(url).post(requestBody).build()
         client.newCall(request).execute().use { response ->
@@ -216,7 +236,7 @@ actual class PlatformHttpClient internal constructor() {
         }
     }
 
-    actual suspend fun downloadFile(url: String, destinationPath: String): Boolean = withContext(Dispatchers.IO) {
+    suspend fun downloadFile(url: String, destinationPath: String): Boolean = withContext(Dispatchers.IO) {
         val request = Request.Builder().url(url).get().build()
         client.newCall(request).execute().use { response ->
             response.body?.byteStream()?.use { input ->
@@ -229,46 +249,58 @@ actual class PlatformHttpClient internal constructor() {
     }
 }
 
-actual class PlatformImageLoader internal constructor(private val context: Context) {
-    actual fun loadImage(url: String, placeholder: Any? = null): Any {
+/**
+ * Platform-specific image loading.
+ * Android implementation returning URIs for Coil.
+ */
+class PlatformImageLoader internal constructor(private val context: Context) {
+    fun loadImage(url: String, placeholder: Any? = null): Any {
         // Return URI for Coil to load
         return Uri.parse(url)
     }
 
-    actual fun loadImageFromFile(path: String): Any {
+    fun loadImageFromFile(path: String): Any {
         return Uri.fromFile(File(path))
     }
 }
 
-actual class PlatformLogger internal constructor() {
-    actual fun debug(tag: String, message: String) {
+/**
+ * Platform-specific logging.
+ * Android implementation using android.util.Log.
+ */
+class PlatformLogger internal constructor() {
+    fun debug(tag: String, message: String) {
         Log.d(tag, message)
     }
 
-    actual fun info(tag: String, message: String) {
+    fun info(tag: String, message: String) {
         Log.i(tag, message)
     }
 
-    actual fun warn(tag: String, message: String) {
+    fun warn(tag: String, message: String) {
         Log.w(tag, message)
     }
 
-    actual fun error(tag: String, message: String, throwable: Throwable? = null) {
+    fun error(tag: String, message: String, throwable: Throwable? = null) {
         Log.e(tag, message, throwable)
     }
 }
 
-actual class PlatformPermissions internal constructor(private val activity: AppCompatActivity) {
-    actual fun requestPermission(permission: String): Boolean {
+/**
+ * Platform-specific permissions.
+ * Android implementation using ContextCompat.
+ */
+class PlatformPermissions internal constructor(private val activity: AppCompatActivity) {
+    fun requestPermission(permission: String): Boolean {
         // Simplified - in real implementation use ActivityCompat.requestPermissions
         return ContextCompat.checkSelfPermission(activity, permission) == android.content.pm.PackageManager.PERMISSION_GRANTED
     }
 
-    actual fun checkPermission(permission: String): Boolean {
+    fun checkPermission(permission: String): Boolean {
         return ContextCompat.checkSelfPermission(activity, permission) == android.content.pm.PackageManager.PERMISSION_GRANTED
     }
 
-    actual fun shouldShowRationale(permission: String): Boolean {
+    fun shouldShowRationale(permission: String): Boolean {
         return androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)
     }
 }
@@ -296,61 +328,98 @@ class LifecycleObserverImpl : LifecycleObserver {
     fun onDestroyEvent() = onDestroy()
 }
 
-actual class PlatformLifecycle internal constructor(private val activity: AppCompatActivity) {
+/**
+ * Platform-specific lifecycle.
+ * Android implementation using LifecycleObserver.
+ */
+class PlatformLifecycle internal constructor(private val activity: AppCompatActivity) {
     private val observer = LifecycleObserverImpl()
 
     init {
         activity.lifecycle.addObserver(observer)
     }
 
-    actual val onStart: () -> Unit
+    val onStart: () -> Unit
         get() = observer.onStart
         set(value) { observer.onStart = value }
 
-    actual val onStop: () -> Unit
+    val onStop: () -> Unit
         get() = observer.onStop
         set(value) { observer.onStop = value }
 
-    actual val onResume: () -> Unit
+    val onResume: () -> Unit
         get() = observer.onResume
         set(value) { observer.onResume = value }
 
-    actual val onPause: () -> Unit
+    val onPause: () -> Unit
         get() = observer.onPause
         set(value) { observer.onPause = value }
 
-    actual val onDestroy: () -> Unit
+    val onDestroy: () -> Unit
         get() = observer.onDestroy
         set(value) { observer.onDestroy = value }
 }
 
-actual fun providePlatformDispatchers(): PlatformDispatchers = PlatformDispatchers()
+fun providePlatformDispatchers(): PlatformDispatchers = PlatformDispatchers()
 
-actual fun providePlatformFileSystem(): PlatformFileSystem {
+fun providePlatformFileSystem(): PlatformFileSystem {
     return PlatformFileSystem(PixelMusicApplication.instance)
 }
 
-actual fun providePlatformMediaPlayer(): PlatformMediaPlayer {
+fun providePlatformMediaPlayer(): PlatformMediaPlayer {
     return PlatformMediaPlayer(PixelMusicApplication.instance)
 }
 
-actual fun providePlatformPreferences(): PlatformPreferences {
+fun providePlatformPreferences(): PlatformPreferences {
     return PlatformPreferences(PixelMusicApplication.instance)
 }
 
-actual fun providePlatformHttpClient(): PlatformHttpClient = PlatformHttpClient()
+fun providePlatformHttpClient(): PlatformHttpClient = PlatformHttpClient()
 
-actual fun providePlatformImageLoader(): PlatformImageLoader {
+fun providePlatformImageLoader(): PlatformImageLoader {
     return PlatformImageLoader(PixelMusicApplication.instance)
 }
 
-actual fun providePlatformLogger(): PlatformLogger = PlatformLogger()
+fun providePlatformLogger(): PlatformLogger = PlatformLogger()
 
-actual fun providePlatformPermissions(): PlatformPermissions {
+fun providePlatformPermissions(): PlatformPermissions {
     // This needs an activity context - in practice would be provided via DI
     throw UnsupportedOperationException("PlatformPermissions requires Activity context")
 }
 
-actual fun providePlatformLifecycle(): PlatformLifecycle {
+fun providePlatformLifecycle(): PlatformLifecycle {
     throw UnsupportedOperationException("PlatformLifecycle requires Activity context")
 }
+
+/**
+ * Media source representation.
+ */
+@Serializable
+data class MediaSource(
+    val id: String,
+    val title: String,
+    val artist: String,
+    val album: String?,
+    val artworkUrl: String?,
+    val mediaUrl: String,
+    val duration: Long,
+    val sourceType: MediaSourceType,
+    val metadata: Map<String, String> = emptyMap()
+)
+
+@Serializable
+enum class MediaSourceType {
+    LOCAL, YOUTUBE_MUSIC, TELEGRAM, GOOGLE_DRIVE, CAST
+}
+
+@Serializable
+enum class PlaybackState {
+    IDLE, BUFFERING, PLAYING, PAUSED, COMPLETED, ERROR
+}
+
+@Serializable
+data class HttpResponse(
+    val statusCode: Int,
+    val body: String,
+    val headers: Map<String, List<String>> = emptyMap()
+)
