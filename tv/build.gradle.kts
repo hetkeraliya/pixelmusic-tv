@@ -315,7 +315,11 @@ configurations.all {
 
 // Workaround for "Cannot fingerprint input property 'compileVersionMap'" serialization issue
 // Disable up-to-date checks for CheckClasspath tasks to avoid fingerprinting issues
-gradle.taskGraph.whenReady { taskGraph ->
-    val tasks = taskGraph.allTasks.filter { (it as org.gradle.api.Task).name.startsWith("check") && (it as org.gradle.api.Task).name.endsWith("Classpath") }
-    tasks.forEach { (it as org.gradle.api.Task).outputs.upToDateWhen { false } }
+gradle.taskGraph.whenReady { taskGraph: org.gradle.api.execution.TaskExecutionGraph ->
+    val tasks: List<org.gradle.api.Task> = taskGraph.allTasks.filter { (task: org.gradle.api.Task) ->
+        task.name.startsWith("check") && task.name.endsWith("Classpath")
+    }
+    tasks.forEach { (task: org.gradle.api.Task) ->
+        task.outputs.upToDateWhen { false }
+    }
 }
