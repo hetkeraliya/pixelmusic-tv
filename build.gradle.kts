@@ -45,7 +45,7 @@ subprojects {
     // Disable compileVersionMap to fix fingerprinting serialization error
     afterEvaluate {
         if (plugins.hasPlugin("com.android.library") || plugins.hasPlugin("com.android.application")) {
-            android {
+            extensions.configure<com.android.build.api.dsl.BaseAppModuleExtension> {
                 experimentalOptions.disableCompileVersionMap = true
             }
         }
