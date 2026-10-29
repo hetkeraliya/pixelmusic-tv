@@ -29,11 +29,6 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6
-        with:
-          cache-disabled: true
-
       - name: Create local.properties
         run: |
           echo "TELEGRAM_API_ID=${{ secrets.TELEGRAM_API_ID }}" > local.properties
@@ -42,7 +37,7 @@ jobs:
           echo "LASTFM_SECRET=${{ secrets.LASTFM_SECRET }}" >> local.properties
 
       - name: Build Debug APK
-        run: gradle :tv:assembleDebug --no-daemon --no-configuration-cache
+        run: ./gradlew :tv:assembleDebug --no-daemon
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v7
@@ -63,7 +58,7 @@ jobs:
 
       - name: Build Release APK
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-        run: gradle :tv:assembleRelease --no-daemon --no-configuration-cache
+        run: ./gradlew :tv:assembleRelease --no-daemon
 
       - name: Verify Release APK
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
