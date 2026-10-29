@@ -15,7 +15,30 @@ plugins {
 subprojects {
     configurations.all {
         resolutionStrategy {
+            // Force Kotlin 2.0.21 to avoid version mismatch with Compose BOM 2024.10.01
             force("org.jetbrains.kotlin:kotlin-metadata-jvm:2.0.21")
+            force("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
+            force("org.jetbrains.kotlin:kotlin-stdlib-common:2.0.21")
+            force("org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.0.21")
+            force("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.0.21")
+            force("org.jetbrains.kotlin:kotlin-reflect:2.0.21")
+
+            // Force kotlinx.coroutines 1.10.2 (compatible with Kotlin 2.0.21)
+            force("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+            force("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2")
+            force("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+            force("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+            force("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
+
+            // Force kotlinx.serialization 1.10.0 (compatible with Kotlin 2.0.21)
+            force("org.jetbrains.kotlinx:kotlinx-serialization-core:1.10.0")
+            force("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.10.0")
+            force("org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0")
+            force("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.10.0")
+
+            // Force BOMs to prevent transitive 1.11.0 resolution
+            force("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.10.2")
+            force("org.jetbrains.kotlinx:kotlinx-serialization-bom:1.10.0")
         }
     }
 }
