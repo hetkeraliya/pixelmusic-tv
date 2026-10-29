@@ -28,6 +28,9 @@ android {
     namespace = "com.unshoo.pixelmusic.tv"
     compileSdk = 34
 
+    // Disable compileVersionMap to fix fingerprinting serialization error
+    experimentalOptions.disableCompileVersionMap = true
+
     defaultConfig {
         applicationId = "com.unshoo.pixelmusic.tv"
         minSdk = 28  // Android TV min SDK
