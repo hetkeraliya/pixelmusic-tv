@@ -315,6 +315,6 @@ configurations.all {
 
 // Workaround for "Cannot fingerprint input property 'compileVersionMap'" serialization issue
 // Disable up-to-date checks for CheckClasspath tasks to avoid fingerprinting issues
-tasks.withType<com.android.build.gradle.tasks.CheckClasspath>().configureEach {
+tasks.matching { it.name.startsWith("check") && it.name.endsWith("Classpath") }.configureEach {
     outputs.upToDateWhen { false }
 }
