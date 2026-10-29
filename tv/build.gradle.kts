@@ -1,4 +1,5 @@
 import java.util.Properties
+import com.android.build.gradle.tasks.CheckClasspath
 
 plugins {
     alias(libs.plugins.android.application)
@@ -311,4 +312,12 @@ tasks.withType<Test> {
 
 configurations.all {
     exclude(group = "org.jetbrains.kotlin", module = "kotlin-android-extensions-runtime")
+}
+
+// Workaround for "Cannot fingerprint input property 'compileVersionMap'" serialization issue
+tasks.named("checkDebugClasspath", CheckClasspath::class) {
+    doNotTrackState("compileVersionMap")
+}
+tasks.named("checkReleaseClasspath", CheckClasspath::class) {
+    doNotTrackState("compileVersionMap")
 }
