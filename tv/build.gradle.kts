@@ -312,9 +312,3 @@ tasks.withType<Test> {
 configurations.all {
     exclude(group = "org.jetbrains.kotlin", module = "kotlin-android-extensions-runtime")
 }
-
-// Workaround for "Cannot fingerprint input property 'compileVersionMap'" serialization issue
-afterEvaluate {
-    tasks.named("checkDebugClasspath", { doNotTrackState("compileVersionMap") })
-    tasks.named("checkReleaseClasspath", { doNotTrackState("compileVersionMap") })
-}
