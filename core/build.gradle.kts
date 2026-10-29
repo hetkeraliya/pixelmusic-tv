@@ -1,7 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
-@OptIn(ExperimentalWasmDsl::class)
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
@@ -9,17 +7,12 @@ plugins {
 }
 
 kotlin {
-    // Targets
+    // Targets - only Android for TV build
     android {
         compileSdk = 37
         defaultConfig {
             minSdk = 30
         }
-    }
-    jvm("desktop")
-    wasmJs("web") {
-        browser()
-        binaries.executable()
     }
 
     // Common source sets
@@ -47,23 +40,6 @@ kotlin {
                 implementation(libs.logging.interceptor)
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.ktor.client.encoding)
-            }
-        }
-        val jvmMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.cio)
-                implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.serialization.json)
-            }
-        }
-        val webMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.js)
-                implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.serialization.json)
-                implementation(libs.kotlin.wasm.dom)
-                implementation(libs.kotlinx.coroutines.core.js)
-                implementation(libs.kotlin.logging)
             }
         }
     }
