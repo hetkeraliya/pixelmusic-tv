@@ -179,9 +179,9 @@ dependencies {
     implementation("androidx.webkit:webkit:1.16.0")
 
     // TV-specific Compose
-    implementation("androidx.tv:tv-material:1.6.0-alpha01")
-    implementation("androidx.tv:tv-foundation:1.6.0-alpha01")
-    implementation("androidx.leanback:leanback-compose:1.0.0-alpha07")
+    implementation(libs.tvMaterial)
+    implementation(libs.tvFoundation)
+    implementation(libs.leanbackCompose)
 
     // DI & Navigation
     implementation(libs.hilt.android)
