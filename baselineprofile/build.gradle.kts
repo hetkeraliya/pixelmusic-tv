@@ -7,9 +7,6 @@ android {
     namespace = "com.unshoo.pixelmusic.baselineprofile"
     compileSdk = 34
 
-    // Disable compileVersionMap to fix fingerprinting serialization error
-    experimentalOptions.disableCompileVersionMap = true
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
