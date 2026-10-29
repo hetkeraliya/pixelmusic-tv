@@ -9,9 +9,6 @@ android {
     namespace = "com.unshoo.pixelmusic.core"
     compileSdk = 34
 
-    // Disable compileVersionMap to fix fingerprinting serialization error
-    experimentalOptions.disableCompileVersionMap = true
-
     defaultConfig {
         minSdk = 30
     }
