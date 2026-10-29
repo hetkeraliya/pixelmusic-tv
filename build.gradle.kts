@@ -41,4 +41,13 @@ subprojects {
             force("org.jetbrains.kotlinx:kotlinx-serialization-bom:1.10.0")
         }
     }
+
+    // Disable compileVersionMap to fix fingerprinting serialization error
+    afterEvaluate {
+        if (plugins.hasPlugin("com.android.library") || plugins.hasPlugin("com.android.application")) {
+            android {
+                experimentalOptions.disableCompileVersionMap = true
+            }
+        }
+    }
 }
