@@ -29,7 +29,16 @@ android {
     compileSdk = 34
 
     // Disable compileVersionMap to fix fingerprinting serialization error
-    experimentalOptions.disableCompileVersionMap = true
+    // Use reflection to set experimentalOptions.disableCompileVersionMap (not available in Kotlin DSL)
+    afterEvaluate {
+        val androidExt = this
+        try {
+            val experimentalOptions = androidExt.javaClass.getMethod("getExperimentalOptions").invoke(androidExt)
+            experimentalOptions.javaClass.getMethod("setDisableCompileVersionMap", Boolean::class.java).invoke(experimentalOptions, true)
+        } catch (e: Exception) {
+            // Ignore if not available
+        }
+    }
 
     defaultConfig {
         applicationId = "com.unshoo.pixelmusic.tv"
