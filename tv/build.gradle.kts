@@ -314,5 +314,7 @@ configurations.all {
 }
 
 // Workaround for "Cannot fingerprint input property 'compileVersionMap'" serialization issue
-tasks.named("checkDebugClasspath").configure { doNotTrackState("compileVersionMap") }
-tasks.named("checkReleaseClasspath").configure { doNotTrackState("compileVersionMap") }
+afterEvaluate {
+    tasks.named("checkDebugClasspath", { doNotTrackState("compileVersionMap") })
+    tasks.named("checkReleaseClasspath", { doNotTrackState("compileVersionMap") })
+}
