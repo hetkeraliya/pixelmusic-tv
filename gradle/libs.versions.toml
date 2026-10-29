@@ -1,6 +1,6 @@
 [versions]
 accompanistDrawablepainter = "0.37.3"
-agp = "8.9.2"
+agp = "8.10.1"
 app = "1.7.0"
 googleGenai = "1.57.0"
 googlePlayServicesCast = "22.3.1"
