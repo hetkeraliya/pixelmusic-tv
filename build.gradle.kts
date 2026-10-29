@@ -42,14 +42,5 @@ subprojects {
         }
     }
 
-    // Disable compileVersionMap to fix fingerprinting serialization error
-    afterEvaluate {
-        if (plugins.hasPlugin("com.android.library") || plugins.hasPlugin("com.android.application")) {
-            extensions.configure("android") {
-                // Use reflection to set experimentalOptions.disableCompileVersionMap
-                val extension = this
-                extension.extraProperties.set("experimentalOptions.disableCompileVersionMap", true)
-            }
-        }
-    }
+    // Disable compileVersionMap is passed via -Pandroid.enableCompileVersionMap=false in CI
 }
