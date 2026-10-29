@@ -83,7 +83,7 @@ dagger = "2.59.2"
 javax-inject = "1"
 
 # Annotations procesing
-ksp = "2.3.9"
+ksp = "2.0.21-1.0.14"
 smoothCornerRectAndroidCompose = "v1.0.0"
 spleeterAndroidIos = "1.0.2"
 tensorflowLite = "2.17.0"
