@@ -314,9 +314,5 @@ configurations.all {
 }
 
 // Workaround for "Cannot fingerprint input property 'compileVersionMap'" serialization issue
-tasks.named("checkDebugClasspath", com.android.build.gradle.tasks.CheckClasspath::class) {
-    doNotTrackState("compileVersionMap")
-}
-tasks.named("checkReleaseClasspath", com.android.build.gradle.tasks.CheckClasspath::class) {
-    doNotTrackState("compileVersionMap")
-}
+tasks.named("checkDebugClasspath").configure { doNotTrackState("compileVersionMap") }
+tasks.named("checkReleaseClasspath").configure { doNotTrackState("compileVersionMap") }
