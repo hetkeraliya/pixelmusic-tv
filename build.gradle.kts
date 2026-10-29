@@ -12,14 +12,6 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
 }
 
-// Configure Java toolchain to use JDK 21
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-        vendor.set(JdkVendor.any())
-    }
-}
-
 subprojects {
     configurations.all {
         resolutionStrategy {
