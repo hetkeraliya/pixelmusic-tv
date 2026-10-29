@@ -26,12 +26,12 @@ val localProperties = Properties().apply {
 
 android {
     namespace = "com.unshoo.pixelmusic.tv"
-    compileSdk = 37
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.unshoo.pixelmusic.tv"
         minSdk = 28  // Android TV min SDK
-        targetSdk = 37
+        targetSdk = 34
         versionCode = (project.findProperty("APP_VERSION_CODE") as? String)?.toInt() ?: 1
         versionName = (project.findProperty("APP_VERSION_NAME") as? String) ?: "1.0.0"
 

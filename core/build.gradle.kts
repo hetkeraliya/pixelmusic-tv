@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.unshoo.pixelmusic.core"
-    compileSdk = 37
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 30

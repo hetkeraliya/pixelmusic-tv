@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.unshoo.pixelmusic.shared"
-    compileSdk = 37
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 30 // Must match app module's minSdk; shared code is pure DTOs with no platform APIs
