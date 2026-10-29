@@ -18,11 +18,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-    kotlinOptions {
-        jvmTarget = "21"
-        freeCompilerArgs += listOf("-Xannotation-default-target=param-property")
-    }
-
     buildFeatures {
         compose = true
     }
@@ -35,6 +30,13 @@ android {
         resources {
             excludes += listOf("META-INF/LICENSE.md", "META-INF/LICENSE.txt", "META-INF/NOTICE.md", "META-INF/NOTICE.txt")
         }
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "21"
+        freeCompilerArgs += listOf("-Xannotation-default-target=param-property")
     }
 }
 
