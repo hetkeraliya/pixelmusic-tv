@@ -37,7 +37,7 @@ jobs:
           echo "LASTFM_SECRET=${{ secrets.LASTFM_SECRET }}" >> local.properties
 
       - name: Build Debug APK
-        run: ./gradlew :tv:assembleDebug --no-daemon
+        run: ./gradlew :tv:assembleDebug --no-daemon --no-configuration-cache
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v7
@@ -58,7 +58,7 @@ jobs:
 
       - name: Build Release APK
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-        run: ./gradlew :tv:assembleRelease --no-daemon
+        run: ./gradlew :tv:assembleRelease --no-daemon --no-configuration-cache
 
       - name: Verify Release APK
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
