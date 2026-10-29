@@ -314,6 +314,6 @@ configurations.all {
 }
 
 // Workaround for "Cannot fingerprint input property 'compileVersionMap'" serialization issue
-tasks.withType<com.android.build.gradle.tasks.CheckClasspath> {
+tasks.withType<com.android.build.gradle.tasks.CheckClasspath>().configureEach {
     inputs.property("compileVersionMap").doNotTrackState()
 }
