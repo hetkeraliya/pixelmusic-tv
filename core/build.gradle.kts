@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.serialization)
@@ -21,6 +19,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "21"
+        freeCompilerArgs += listOf("-Xannotation-default-target=param-property")
     }
 
     buildFeatures {
@@ -35,13 +34,6 @@ android {
         resources {
             excludes += listOf("META-INF/LICENSE.md", "META-INF/LICENSE.txt", "META-INF/NOTICE.md", "META-INF/NOTICE.txt")
         }
-    }
-}
-
-kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_21)
-        freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
 }
 
