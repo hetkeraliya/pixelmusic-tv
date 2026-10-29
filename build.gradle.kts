@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.multiplatform) apply false
-    id("org.jetbrains.kotlin.plugin.compose.multiplatform") version "2.4.0" apply false
+    alias(libs.plugins.compose.multiplatform) apply false
 }
 
 subprojects {
