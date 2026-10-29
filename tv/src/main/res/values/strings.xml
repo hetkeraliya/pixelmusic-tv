@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Pixel Music TV</string>
+    <string name="app_name_short">Pixel Music</string>
+
+    <!-- Settings -->
+    <string name="settings_audio_quality">Audio Quality</string>
+    <string name="settings_equalizer">Equalizer</string>
+    <string name="settings_crossfade">Crossfade</string>
+    <string name="settings_sleep_timer">Sleep Timer</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_downloads">Downloads</string>
+    <string name="settings_account">Account</string>
+    <string name="settings_about">About</string>
+
+    <!-- Content -->
+    <string name="recently_played">Recently Played</string>
+    <string name="artists">Artists</string>
+    <string name="albums">Albums</string>
+    <string name="playlists">Playlists</string>
+    <string name="radio_stations">Radio Stations</string>
+    <string name="search">Search</string>
+    <string name="library">Library</string>
+    <string name="create_playlist">Create Playlist</string>
+
+    <!-- Player -->
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="repeat">Repeat</string>
+
+    <!-- Errors -->
+    <string name="error_no_internet">No internet connection</string>
+    <string name="error_playback_failed">Playback failed</string>
+    <string name="error_loading">Loading failed</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/background_dark" />
+    <item android:gravity="center">
+        <vector
+            android:width="320dp"
+            android:height="180dp"
+            android:viewportWidth="320"
+            android:viewportHeight="180">
+            <!-- Background circle -->
+            <path
+                android:fillColor="@color/purple_200"
+                android:pathData="M160,90m-80,0a80,80 0,1 1,160 0a80,80 0,1 1,-160 0" />
+            <!-- Music note icon -->
+            <path
+                android:fillColor="@color/background_dark"
+                android:pathData="M130,50h20v80h-20zM170,50h20v80h-20zM110,70h20v60h-20zM190,70h20v60h-20z" />
+            <!-- App name -->
+            <path
+                android:fillColor="@color/white"
+                android:pathData="M60,120h200v30h-200z" />
+        </vector>
+    </item>
+</layer-list>
