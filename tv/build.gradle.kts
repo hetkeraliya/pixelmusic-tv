@@ -118,7 +118,11 @@ android {
                 "META-INF/io.netty.versions.properties",
                 "META-INF/CONTRIBUTORS.md",
                 "META-INF/NOTICE.txt",
-                "META-INF/NOTICE.md"
+                "META-INF/NOTICE.md",
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE.txt",
+                "META-INF/LICENSE",
+                "META-INF/NOTICE"
             )
             pickFirsts += listOf(
                 "META-INF/**/*"
