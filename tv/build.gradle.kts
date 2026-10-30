@@ -118,16 +118,15 @@ android {
                 "META-INF/io.netty.versions.properties",
                 "META-INF/CONTRIBUTORS.md",
                 "META-INF/NOTICE.txt",
-                "META-INF/NOTICE.md",
-                "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
-                "META-INF/versions/9/module-info.class",
-                "META-INF/versions/9/OSGI-INF/*.MF"
+                "META-INF/NOTICE.md"
             )
             pickFirsts += listOf(
                 "META-INF/LICENSE.md",
                 "META-INF/LICENSE.txt",
                 "META-INF/services/*",
-                "META-INF/*.kotlin_module"
+                "META-INF/*.kotlin_module",
+                "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
+                "META-INF/versions/9/module-info.class"
             )
         }
         jniLibs {
