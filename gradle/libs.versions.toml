@@ -116,8 +116,8 @@ wearCompose = "1.6.2"
 playServicesWearable = "20.0.1"
 
 # TV Compose
-tv = "1.3.0"
-leanbackCompose = "1.0.0-beta01"
+tv = "1.6.0-alpha01"
+leanbackCompose = "1.0.0-alpha07"
 
 [libraries]
 accompanist-drawablepainter = { module = "com.google.accompanist:accompanist-drawablepainter", version.ref = "accompanistDrawablepainter" }
