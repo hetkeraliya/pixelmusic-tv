@@ -27,7 +27,7 @@
     <style name="Theme.PixelMusicTV.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/background_dark</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_animation</item>
-        <item name="windowSplashScreenAnimationDuration">3500</item>
+        <item name="windowSplashScreenAnimationDuration">1500</item>
         <item name="postSplashScreenTheme">@style/Theme.PixelMusicTV.NoActionBar</item>
     </style>
 </resources>

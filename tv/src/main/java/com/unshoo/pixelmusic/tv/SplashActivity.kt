@@ -45,8 +45,8 @@ class SplashActivity : AppCompatActivity() {
         if (drawable is android.graphics.drawable.AnimatedVectorDrawable) {
             drawable.start()
 
-            // Calculate total animation duration
-            val totalDuration = 3500L // Total animation duration in ms
+            // Calculate total animation duration (matches theme duration)
+            val totalDuration = 1500L // Total animation duration in ms
 
             // Navigate to MainActivity after animation completes
             Handler(Looper.getMainLooper()).postDelayed({
