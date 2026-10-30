@@ -37,7 +37,7 @@ jobs:
           echo "LASTFM_SECRET=${{ secrets.LASTFM_SECRET }}" >> local.properties
 
       - name: Build Debug APK
-        run: ./gradlew :tv:assembleDebug --no-daemon --no-configuration-cache -x checkDebugClasspath
+        run: ./gradlew :tv:assembleDebug --no-daemon --no-configuration-cache
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v7
