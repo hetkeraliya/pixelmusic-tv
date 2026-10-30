@@ -116,8 +116,8 @@ wearCompose = "1.6.2"
 playServicesWearable = "20.0.1"
 
 # TV Compose
-tv = "1.6.0-alpha01"
-leanbackCompose = "1.0.0-alpha07"
+tvMaterial = "1.1.0"
+tvFoundation = "1.0.0"
 
 [libraries]
 accompanist-drawablepainter = { module = "com.google.accompanist:accompanist-drawablepainter", version.ref = "accompanistDrawablepainter" }
@@ -299,9 +299,8 @@ wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation",
 wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wearCompose" }
 
 # TV Compose
-tvMaterial = { module = "androidx.tv:tv-material", version.ref = "tv" }
-tvFoundation = { module = "androidx.tv:tv-foundation", version.ref = "tv" }
-leanbackCompose = { module = "androidx.leanback:leanback-compose", version.ref = "leanbackCompose" }
+tvMaterial = { module = "androidx.tv:tv-material", version.ref = "tvMaterial" }
+tvFoundation = { module = "androidx.tv:tv-foundation", version.ref = "tvFoundation" }
 
 # Horologist
 horologist-compose-layout = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }

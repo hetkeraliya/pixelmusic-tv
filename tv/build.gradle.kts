@@ -181,7 +181,6 @@ dependencies {
     // TV-specific Compose
     implementation(libs.tvMaterial)
     implementation(libs.tvFoundation)
-    implementation(libs.leanbackCompose)
 
     // DI & Navigation
     implementation(libs.hilt.android)
