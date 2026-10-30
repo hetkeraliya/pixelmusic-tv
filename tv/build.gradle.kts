@@ -322,4 +322,30 @@ tasks.withType<Test> {
 
 configurations.all {
     exclude(group = "org.jetbrains.kotlin", module = "kotlin-android-extensions-runtime")
+    resolutionStrategy {
+        // Force stable versions compatible with AGP 8.10.1 and compileSdk 36
+        force("androidx.core:core-ktx:1.18.0")
+        force("androidx.core:core:1.18.0")
+        force("androidx.compose.ui:ui-android:1.11.2")
+        force("androidx.compose.ui:ui:1.11.2")
+        force("androidx.compose.ui:ui-graphics:1.11.2")
+        force("androidx.compose.ui:ui-text:1.11.2")
+        force("androidx.compose.ui:ui-util:1.11.2")
+        force("androidx.compose.foundation:foundation:1.11.2")
+        force("androidx.compose.foundation:foundation-layout:1.11.2")
+        force("androidx.compose.material3:material3:1.11.2")
+        force("androidx.compose.runtime:runtime:1.11.2")
+        force("androidx.compose.animation:animation:1.11.2")
+        force("androidx.compose.animation:animation-core:1.11.2")
+        force("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
+        force("androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
+        force("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
+        force("androidx.activity:activity-compose:1.12.0")
+        force("androidx.activity:activity:1.12.0")
+        // Exclude problematic alpha versions
+        reject("androidx.core:core-ktx:1.19.0-alpha02")
+        reject("androidx.core:core:1.19.0-alpha02")
+        reject("androidx.compose.ui:ui-android:1.12.0-alpha03")
+        reject("androidx.compose.remote:remote-creation-android:1.0.0-alpha11")
+    }
 }
