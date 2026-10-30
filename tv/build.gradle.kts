@@ -325,7 +325,7 @@ configurations.all {
     resolutionStrategy {
         // Force stable versions compatible with AGP 8.10.1 and compileSdk 36
         // Only force core/activity versions that cause compileSdk issues
-        // Let the Compose BOM manage Compose versions
+        // Let the Compose BOM manage Compose versions, but force specific problematic ones
         force("androidx.core:core-ktx:1.18.0")
         force("androidx.core:core:1.18.0")
         force("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
@@ -333,5 +333,19 @@ configurations.all {
         force("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
         force("androidx.activity:activity-compose:1.12.0")
         force("androidx.activity:activity:1.12.0")
+        // Force Compose UI to stable 1.11.x (avoid 1.12.0-alpha)
+        force("androidx.compose.ui:ui-android:1.11.2")
+        force("androidx.compose.ui:ui:1.11.2")
+        force("androidx.compose.ui:ui-graphics:1.11.2")
+        force("androidx.compose.ui:ui-text:1.11.2")
+        force("androidx.compose.ui:ui-util:1.11.2")
+        force("androidx.compose.foundation:foundation:1.11.2")
+        force("androidx.compose.foundation:foundation-layout:1.11.2")
+        force("androidx.compose.runtime:runtime:1.11.2")
+        force("androidx.compose.runtime:runtime-saveable:1.11.2")
+        force("androidx.compose.animation:animation:1.11.2")
+        force("androidx.compose.animation:animation-core:1.11.2")
+        // Note: androidx.compose.material3:material3 uses different versioning (1.0.x, 1.1.x)
+        // Let the BOM manage material3 version
     }
 }
