@@ -125,8 +125,7 @@ android {
                 "META-INF/LICENSE.txt",
                 "META-INF/services/*",
                 "META-INF/*.kotlin_module",
-                "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
-                "META-INF/versions/9/module-info.class"
+                "META-INF/versions/**/*"
             )
         }
         jniLibs {
