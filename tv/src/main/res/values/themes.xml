@@ -22,4 +22,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <!-- Splash theme -->
+    <style name="Theme.PixelMusicTV.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background_dark</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_animation</item>
+        <item name="windowSplashScreenAnimationDuration">3500</item>
+        <item name="postSplashScreenTheme">@style/Theme.PixelMusicTV.NoActionBar</item>
+    </style>
 </resources>

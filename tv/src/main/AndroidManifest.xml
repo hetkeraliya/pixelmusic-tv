@@ -51,17 +51,25 @@
         android:theme="@style/Theme.PixelMusicTV"
         android:usesCleartextTraffic="true">
 
+        <!-- Splash Activity - Launcher -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.PixelMusicTV.NoActionBar">
+            android:theme="@style/Theme.PixelMusicTV.Splash"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.PixelMusicTV.NoActionBar" />
 
         <!-- Media session service for TV -->
         <service

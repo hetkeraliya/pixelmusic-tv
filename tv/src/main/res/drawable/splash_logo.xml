@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Background circle -->
+    <group android:name="backgroundGroup">
+        <path
+            android:name="backgroundCircle"
+            android:fillColor="@color/purple_200"
+            android:pathData="M100,100m-90,0a90,90 0,1 1,180 0a90,90 0,1 1,-180 0" />
+    </group>
+    <!-- Music note - left bar -->
+    <group android:name="noteLeftGroup" android:pivotX="90" android:pivotY="100">
+        <path
+            android:name="noteLeft"
+            android:fillColor="@color/background_dark"
+            android:pathData="M70,40h15v120h-15z" />
+    </group>
+    <!-- Music note - right bar -->
+    <group android:name="noteRightGroup" android:pivotX="110" android:pivotY="100">
+        <path
+            android:name="noteRight"
+            android:fillColor="@color/background_dark"
+            android:pathData="M115,40h15v120h-15z" />
+    </group>
+    <!-- Music note - bottom curve left -->
+    <group android:name="noteCurveLeftGroup" android:pivotX="80" android:pivotY="110">
+        <path
+            android:name="noteCurveLeft"
+            android:fillColor="@color/background_dark"
+            android:pathData="M55,80h30v50h-30z" />
+    </group>
+    <!-- Music note - bottom curve right -->
+    <group android:name="noteCurveRightGroup" android:pivotX="120" android:pivotY="110">
+        <path
+            android:name="noteCurveRight"
+            android:fillColor="@color/background_dark"
+            android:pathData="M115,80h30v50h-30z" />
+    </group>
+    <!-- Text "Pixel Music" -->
+    <group android:name="textGroup">
+        <path
+            android:name="textPath"
+            android:fillColor="@color/white"
+            android:pathData="M30,160h140v25h-140z" />
+    </group>
+</vector>
