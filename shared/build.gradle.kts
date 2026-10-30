@@ -8,7 +8,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 30 // Must match app module's minSdk; shared code is pure DTOs with no platform APIs
+        minSdk = 28 // Must match app module's minSdk; shared code is pure DTOs with no platform APIs
     }
 
     compileOptions {
