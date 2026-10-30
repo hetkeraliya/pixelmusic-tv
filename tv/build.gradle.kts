@@ -119,11 +119,15 @@ android {
                 "META-INF/CONTRIBUTORS.md",
                 "META-INF/NOTICE.txt",
                 "META-INF/NOTICE.md",
-                "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+                "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
+                "META-INF/versions/9/module-info.class",
+                "META-INF/versions/9/OSGI-INF/*.MF"
             )
             pickFirsts += listOf(
                 "META-INF/LICENSE.md",
-                "META-INF/LICENSE.txt"
+                "META-INF/LICENSE.txt",
+                "META-INF/services/*",
+                "META-INF/*.kotlin_module"
             )
         }
         jniLibs {
