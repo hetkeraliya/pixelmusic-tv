@@ -342,10 +342,5 @@ configurations.all {
         force("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
         force("androidx.activity:activity-compose:1.12.0")
         force("androidx.activity:activity:1.12.0")
-        // Exclude problematic alpha versions
-        reject("androidx.core:core-ktx:1.19.0-alpha02")
-        reject("androidx.core:core:1.19.0-alpha02")
-        reject("androidx.compose.ui:ui-android:1.12.0-alpha03")
-        reject("androidx.compose.remote:remote-creation-android:1.0.0-alpha11")
     }
 }
