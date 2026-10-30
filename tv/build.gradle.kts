@@ -133,6 +133,11 @@ android {
         }
     }
 
+    // Increase dex merging memory
+    dexOptions {
+        javaMaxHeapSize = "2g"
+    }
+
     // TV-specific: no splits needed for TV
     bundle {
         abi.enableSplit = false
