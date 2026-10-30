@@ -135,7 +135,7 @@ android {
 
     // Increase dex merging memory
     dexOptions {
-        javaMaxHeapSize = "2g"
+        javaMaxHeapSize = "4g"
     }
 
     // TV-specific: no splits needed for TV
