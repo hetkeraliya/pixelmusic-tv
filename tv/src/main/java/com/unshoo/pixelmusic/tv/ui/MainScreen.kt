@@ -1,5 +1,6 @@
 package com.unshoo.pixelmusic.tv.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,6 +35,8 @@ import androidx.tv.material3.NavigationDrawer
 import androidx.tv.material3.NavigationDrawerItem
 import androidx.tv.material3.PrimaryNavigationDrawer
 import androidx.tv.material3.TvMaterialTheme
+import coil.compose.rememberImagePainter
+import com.unshoo.pixelmusic.tv.di.rememberPlatformImageLoader
 import kotlinx.coroutines.launch
 
 @Composable
@@ -362,6 +365,11 @@ fun MediaCard(
     isRound: Boolean = false,
     onClick: () -> Unit
 ) {
+    val imageLoader = rememberPlatformImageLoader()
+    val imageUri = imageLoader.loadImage(imageUrl) as android.net.Uri
+    val painter = coil.compose.rememberImagePainter(imageUri, builder = {
+        crossfade(true)
+    })
     Card(
         onClick = onClick,
         modifier = Modifier
@@ -373,7 +381,7 @@ fun MediaCard(
         ) {
             // Image
             androidx.compose.foundation.Image(
-                painter = androidx.compose.ui.res.painterResource(id = 0), // Placeholder
+                painter = painter,
                 contentDescription = title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
