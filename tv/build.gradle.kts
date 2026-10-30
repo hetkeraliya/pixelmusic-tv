@@ -121,11 +121,7 @@ android {
                 "META-INF/NOTICE.md"
             )
             pickFirsts += listOf(
-                "META-INF/LICENSE.md",
-                "META-INF/LICENSE.txt",
-                "META-INF/services/*",
-                "META-INF/*.kotlin_module",
-                "META-INF/versions/**/*"
+                "META-INF/**/*"
             )
         }
         jniLibs {
