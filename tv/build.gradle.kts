@@ -324,19 +324,10 @@ configurations.all {
     exclude(group = "org.jetbrains.kotlin", module = "kotlin-android-extensions-runtime")
     resolutionStrategy {
         // Force stable versions compatible with AGP 8.10.1 and compileSdk 36
+        // Only force core/activity versions that cause compileSdk issues
+        // Let the Compose BOM manage Compose versions
         force("androidx.core:core-ktx:1.18.0")
         force("androidx.core:core:1.18.0")
-        force("androidx.compose.ui:ui-android:1.11.2")
-        force("androidx.compose.ui:ui:1.11.2")
-        force("androidx.compose.ui:ui-graphics:1.11.2")
-        force("androidx.compose.ui:ui-text:1.11.2")
-        force("androidx.compose.ui:ui-util:1.11.2")
-        force("androidx.compose.foundation:foundation:1.11.2")
-        force("androidx.compose.foundation:foundation-layout:1.11.2")
-        force("androidx.compose.material3:material3:1.11.2")
-        force("androidx.compose.runtime:runtime:1.11.2")
-        force("androidx.compose.animation:animation:1.11.2")
-        force("androidx.compose.animation:animation-core:1.11.2")
         force("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
         force("androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
         force("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
